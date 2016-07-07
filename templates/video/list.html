@@ -1,0 +1,24 @@
+{% extends "mysite/base.html" %}
+{% block content %}
+  <article>
+    <section class="title">
+      <h2>视频集</h2>
+    </section>
+    
+    <section class="post">
+      <ul class="listing">
+        
+        {% for video in videos %}
+          {% ifchanged video.date.year %}
+            <li class="listing-seperator">{{video.date.year}}</li>
+          {% endifchanged %}
+          <li class="listing-item">
+            <time datetime='{{ video.date|date:"c" }}'>{{ video.date|date:"c" }}</time>
+            <a href="/video/{{video.path}}" title="{{video.title}}">{{video.title}}</a>
+          </li>
+        {% endfor %}
+        
+      </ul>
+    </section>
+  </article>
+{% endblock %}

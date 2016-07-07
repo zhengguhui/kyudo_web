@@ -1,0 +1,30 @@
+{% extends "mysite/base.html" %}
+{% block content %}
+  <form action="" method="post">{% csrf_token %}
+    <div class="form-group">
+      <label for="userId">用户名:</label>
+      <input id="userId" name="name" type="text" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
+    </div>
+    <div class="form-group">
+      <label for="password">密码:</label>
+      <input id="password" name="password" type="password" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
+    </div>
+    <div class="form-group">
+      <label for="passwordAgain">再次输入密码:</label>
+      <input id="passwordAgain" name="password2" type="password" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
+    </div>
+    <div class="form-group">
+      <label for="realname">真实姓名:</label>
+      <input id="realname" name="realname" type="text" class="form-control" placeholder="张XX" aria-describedby="basic-addon1">
+    </div>
+    <div class="form-group">
+      <label for="email">邮箱:</label>
+      <input id="email" name="email" type="email" class="form-control" placeholder="XXXX@XXX.XXX" aria-describedby="basic-addon1">
+    </div>
+    <div class="form-group">
+      <label for="invite">邀请码:</label>
+      <input id="invite" name="invite" type="text" class="form-control" placeholder="邀请码" aria-describedby="basic-addon1">
+    </div>
+    <button type="submit" class="btn btn-default">提交</button>
+  </form>
+{% endblock %}

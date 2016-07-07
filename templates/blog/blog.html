@@ -1,0 +1,37 @@
+{% extends "mysite/base.html" %}
+{% load staticfiles %}
+{% load blog_filter %}
+{% block content %}
+<!--
+  <section class="title">
+    <h2>{{blog.title}}</h2>
+  </section>
+  <section class="meta">
+    <span class="time">
+      <time datetime='{{ blog.date|date:"c" }}'>{{ blog.date|date:"c" }}</time>
+    </span>
+    
+    <span class="tags">
+      {% for tag in blog.tags.all %}
+        <a href="/tags/{{tag.value}}" title="{{tag.value}}">#{{tag.value}}</a>
+      {% endfor %}
+    </span>
+    
+    
+    
+  </section>
+    -->
+  <section class="post">
+    {% autoescape off %}
+    {{blog.content | markdown}}
+  {% endautoescape %}
+</section>
+{% if 'level' in session %}
+{% if blog.edit_level >= session.level%}
+  <a href='?edit='>编辑</a>
+  <a href='../file/upload' target="view_window">上传</a>
+  <!-- /  <a href='?delete='>DELETE</a> -->
+  <br>
+{% endif %}
+{% endif %}
+{% endblock %}

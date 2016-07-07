@@ -1,0 +1,312 @@
+@charset "UTF-8";
+/*------------------------------------
+ * sext-vi
+ *
+ * @author linghua.zhang@me.com
+ * @link http://lhzhang.com/
+ * @update 2014-03-17
+ *
+ * |/ | (~ (~
+ * |\.|._)._)
+ * --------------------------------- */
+
+
+* {
+  margin: 0;
+  padding: 0; 
+}
+html {
+  background: none repeat scroll 0% 0% rgb(0, 0, 0);
+}
+
+body {
+  font-size: 14px;
+  font-family: "telexregular", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: none repeat scroll 0% 0% rgb(0, 0, 0); 
+}
+
+.logo{
+  left:0px;
+  top:0px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  background: url("/static/logo2.png") no-repeat scroll  0% 0% transparent;
+  background-position :bottom left;
+}
+.logo_dialog{
+  position: relative;
+  height: 230px;
+  width: 1000px;
+  margin: 0 auto;
+}
+header {
+}
+
+header nav {
+  display: inline-block;
+  background: url("/static/background2.png") ; 
+  background-size : 100% 100%;
+  width: 100%;
+  padding-bottom: 30px;
+  margin-bottom:5px !important;
+}
+header nav ul{
+  height:69px;
+  margin: 0 auto;
+}
+
+#nav_tab{
+  
+  width: 1000px;
+}
+
+.nav-pills>li+li{
+  margin-left:0px;
+
+}
+.nav-header>li:hover,.nav-header>li.open{
+  background: url("/static/button_01_1.png") no-repeat;
+  background-size : 100% 100%;
+
+}
+
+
+
+
+
+.nav-header>li>a:focus, .nav-header>li>a:hover,.nav-header>li.open>a:focus, .nav-header>li.open>a:hover,.nav-header>li.open>a{
+  background-image:none;
+  background-color: rgba(255,255,255,.0);
+  color:rgb(255, 255, 255);
+}
+
+.nav-header>li>a{
+  color:rgb(255, 255, 255);
+
+}
+
+
+.li6{
+  height:100%;
+  width:14.2857142857%;
+}
+
+.li12{
+  height:100%;
+  width:7.14285714286%;
+}
+
+.navlia{
+  height:100%;
+  text-align:right;
+}
+
+#nav_tab{
+  background: none repeat scroll 0% 0% rgb(255, 0, 0);
+}
+
+.nav-header li{
+  background: url("/static/button_01.png") no-repeat;
+  background-size : 100% 100%;
+}
+
+.dropdown-menu {
+  padding: 0;
+}
+
+
+
+
+.blog {
+  padding:20px;
+  background: none repeat scroll 0% 0% rgb(255, 255, 255);
+  width: 1000px;
+  margin: 0 auto;
+  line-height: 2em; 
+}
+
+
+blockquote {
+    border-left: 5px solid rgb(255, 255, 255);
+}
+
+blockquote img{
+  max-width:100%;
+}
+
+.blog video{
+  width:100%;
+}
+
+blockquote, pre code {
+  padding: 0 1em;
+  font-size: 13px;
+  line-height: 1.6;
+  display: block;
+  overflow: auto; 
+}
+
+footer {
+  width: 100%;
+  background: url("/static/background1.png") ; 
+  background-size : 100% 100%;
+  padding-top: 30px;
+  display: block;
+  color: #909090;
+  font-family: "telexregular", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: .9em;
+  text-align: center;
+  margin: 1em auto; 
+}
+  footer a, footer header #header h1 a, header #header h1 footer a, footer article .title a, article .title footer a, footer article .meta .tags a, article .meta .tags footer a, footer article .divider a, article .divider footer a {
+    color: #cccccc; }
+    footer a:hover, footer header #header h1 a:hover, header #header h1 footer a:hover, footer article .meta .tags a:hover, article .meta .tags footer a:hover {
+      color: #999999; }
+
+#nav_tab2{
+  display: table;
+  margin:0 auto;
+  width:auto;
+}
+
+
+
+
+
+
+/*------------------------------------*/
+
+ol, ul {
+  list-style-position: inside; }
+
+li {
+  padding: .2em 0; }
+
+hr {
+  width: 4em;
+  border: none;
+  border-top: 1px dashed #d0d0d0;
+  border-bottom: 1px dashed #f9f9f9; }
+
+.center {
+  text-align: center; }
+
+::selection {
+  color: #fff;
+  background-color: #333; 
+}
+
+a, header #header h1 a, article .title a, article .meta .tags a, article .divider a {
+  text-decoration: none;
+  color: #bb2222; }
+  a:hover, header #header h1 a:hover, article .title a:hover, article .meta .tags a:hover, article .divider a:hover {
+    color: #dd1144; }
+
+code {
+  background-color: #f8f8f8;
+  padding: 2px 5px;
+  border: 1px dashed #e0e0e0;
+  font-family: "Ubuntu", monospace; }
+
+h1, h2 {
+  font-size: 1.4em; }
+
+time {
+  font-family: "Ubuntu", monospace; }
+
+
+  #content .main-listing {
+    margin-bottom: 2em; }
+
+ul.listing {
+  margin-top: 1em; }
+  ul.listing li {
+    list-style-type: none;
+    padding: 0; }
+    ul.listing li.listing-item a, ul.listing li.listing-item header #header h1 a, header #header h1 ul.listing li.listing-item a {
+      padding: .2em 0 .2em 2em; }
+    ul.listing li.listing-item time {
+      color: #999; }
+    ul.listing li.listing-item:hover {
+      background-color: rgb(0, 0, 0); }
+    ul.listing li.listing-seperator {
+      font-family: "telexregular", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+      ul.listing li.listing-seperator:before {
+        content: "⭠ ";
+        color: #ccc; }
+
+article {
+  margin: 2em 0; }
+  article p {
+    padding: .7em 0; }
+  article .title {
+    font-family: "telexregular", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+    article .title header #header h1 a, header #header h1 article .title a, article .title a, article .title .meta .tags a, article .meta .tags .title a {
+      color: #777; }
+  article .meta {
+    display: block;
+    overflow: auto;
+    margin-top: -.5em;
+    font-size: .9em; }
+    article .meta .tags header #header h1 a, header #header h1 article .meta .tags a, article .meta .tags a {
+      color: #999999;
+      padding: .25em; }
+  article .post img {
+    max-width: 1000px;
+    display: block;
+    margin: .5em auto; }
+  article .comment {
+    margin: 3em 0; }
+  article .divider {
+    margin: 2em 0; }
+    article .divider i {
+      margin: 0 2em;
+      color: #e9e9e9; }
+    article .divider header #header h1 a, header #header h1 article .divider a, article .divider .meta .tags a, article .meta .tags .divider a, article .divider a {
+      font-family: "telexregular", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      margin: 0 2em; }
+      article .divider header #header h1 a i, header #header h1 article .divider a i, article .divider .meta .tags a i, article .meta .tags .divider a i, article .divider a i {
+        color: #999999;
+        margin: 0; }
+        article .divider header #header h1 a i:hover, header #header h1 article .divider a i:hover, article .divider a i:hover {
+          color: #bb2222 !important; }
+  article .divider {
+    position: relative;
+    font-size: 1em;
+    z-index: 1;
+    overflow: hidden;
+    text-align: center; }
+  article .divider:before, article .divider:after {
+    position: absolute;
+    top: 51%;
+    overflow: hidden;
+    width: 49%;
+    height: 2px;
+    content: '\a0';
+    background-color: #f0f0f0; }
+  article .divider:before {
+    margin-left: -50%;
+    text-align: right; }
+  article .divider:after {
+    margin-left: 1%; }
+
+
+
+#tag_cloud {
+  margin-bottom: 1em; }
+
+.gist {
+  font-size: 13px;
+  line-height: 1.6; }
+
+.like-wrapper {
+  color: #999; }
+  .like-wrapper .like-button, .like-wrapper .unlike-button {
+    font-family: "FontAwesome";
+    padding-right: 5px; }
+  .like-wrapper .like-button:hover {
+    color: #dd1144; }
+  .like-wrapper .like-button.liked:hover {
+    color: #999; }

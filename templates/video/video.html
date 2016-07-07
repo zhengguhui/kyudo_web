@@ -1,0 +1,47 @@
+{% extends "mysite/base.html" %}
+{% load staticfiles %}
+{% block head %}
+  <script src="{% static 'video/js/video.js' %}"></script>
+{% endblock %}
+  
+{% load blog_filter %}
+{% block content %}
+  <section class="title">
+    <h2>{{video.title}}</h2>
+  </section>
+  <section class="meta">
+    <span class="time">
+      <time datetime='{{ video.date|date:"c"}}'>{{ video.date|date:"c" }}</time>
+    </span>
+  </section>
+  <section class="video">
+    <div id="selectedFile">
+      {% for file in video.files.all %}
+        <input type="button" class="file btn btn-default" onclick="playVideo(this)" value="{{file.title}}"" src="{{file.src}}"'/>
+      {% endfor %}
+    </div> 
+
+
+
+       <video id="myvideo"   controls="controls">
+您的浏览器不支持 video 标签。
+
+</video>
+
+
+
+    <session>
+  <section class="post">
+    {% autoescape off %}
+    {{video.content | markdown}}
+  {% endautoescape %}
+</section>
+{% if 'level' in session %}
+{% if video.edit_level >= session.level%}
+  <a href='?edit='>编辑</a>
+  <a href='../file/upload' target="view_window">上传</a>
+  <!-- /  <a href='?delete='>DELETE</a> -->
+  <br>
+{% endif %}
+{% endif %}
+{% endblock %}

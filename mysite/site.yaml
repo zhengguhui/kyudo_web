@@ -1,0 +1,12 @@
+owner: 上海正鹄会
+email: zhenggushanghai@163.com
+title: 上海正鹄会
+index: /
+login_level: 10
+levels : 
+    -   level : 1
+        name : 管理员
+    -   level : 10
+        name : 会员
+    -   level : 1000
+        name : 游客

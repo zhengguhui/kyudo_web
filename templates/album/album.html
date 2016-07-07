@@ -1,0 +1,99 @@
+{% extends "mysite/base.html" %}
+{% load staticfiles %}
+{% block head %}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <!--
+    <script type="text/javascript" src="{% static 'album/js/jquery.tmpl.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'album/js/jquery.easing.1.3.js' %}"></script>
+    <script type="text/javascript" src="{% static 'album/js/jquery.elastislide.js' %}"></script>
+    <script type="text/javascript" src="{% static 'album/js/gallery.js' %}"></script>
+    -->
+    <script type="text/javascript" src="{% static 'album/js/jquery.carouFredSel-6.2.1-packed.js' %}"></script>
+  <script src="{% static 'album/js/album.js' %}"></script>
+  <!--
+    <link rel="stylesheet" type="text/css" href="{% static 'album/css/album.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'album/css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'album/css/elastislide.css' %}" />
+    -->
+{% endblock %}
+  
+{% load blog_filter %}
+
+
+{% block album %}
+    <div class="list_carousel responsive">
+      <ul id="foo4">
+      {% for file in album.files.all %}
+       <img src="{{file.src}}" data-large="{{file.src}}"  data-description="{{file.content}}" />
+       <img src="{{file.src}}" data-large="{{file.src}}"  data-description="{{file.content}}" />
+      {% endfor %}
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+{% endblock %}
+{% block content %}
+<!--
+  <section class="title">
+    <h2>{{album.title}}</h2>
+  </section>
+  <section class="meta">
+    <span class="time">
+      <time datetime='{{ album.date|date:"c"}}'>{{ album.date|date:"c" }}</time>
+    </span>
+  </section>
+  -->
+    <!--
+  <section class="album">
+<script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">  
+      <div class="rg-image-wrapper">
+          <div class="rg-image-nav">
+            <a href="#" class="rg-image-nav-prev">Previous Image</a>
+            <a href="#" class="rg-image-nav-next">Next Image</a>
+          </div>
+        <div class="rg-image"></div>
+        <div class="rg-loading"></div>
+        <div class="rg-caption-wrapper">
+          <div class="rg-caption" style="display:none;">
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </script>
+    <div class="container">
+      <div class="content">
+        <div id="rg-gallery" class="rg-gallery">
+          <div class="rg-thumbs">
+            <div class="es-carousel-wrapper">
+              <div class="es-nav">
+                <span class="es-nav-prev">Previous</span>
+                <span class="es-nav-next">Next</span>
+              </div>
+              <div class="es-carousel">
+                <ul>
+      {% for file in album.files.all %}
+        <li><a href="#"><img src="{{file.src}}" data-large="{{file.src}}"  data-description="{{file.content}}" /></a></li>
+      {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <session>
+    -->
+  <section class="post">
+    {% autoescape off %}
+    {{album.content | markdown}}
+  {% endautoescape %}
+</section>
+{% if 'level' in session %}
+{% if album.edit_level >= session.level%}
+  <a href='?edit='>编辑</a>
+  <a href='../file/upload' target="view_window">上传</a>
+  <!-- /  <a href='?delete='>DELETE</a> -->
+  <br>
+{% endif %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us" >
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    
+    <title>{{site.title}}</title>
+    <link rel="shortcut icon" href="{% static 'icon.png' %}"/>
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap-theme.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/style.css' %}" />
+    
+    <script src="{% static 'jquery/jquery-1.11.3.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}" ></script>
+    <script type="text/javascript" src="{% static 'album/js/jquery.carouFredSel-6.2.1-packed.js' %}"></script>
+    <script src="{% static 'blog/js/blog.js' %}"></script>
+    <script src="{% static 'mysite.js' %}"></script>
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body >
+    <div id="main" role="main">
+      <header>
+        <div class="logo_dialog">
+    <div class="list_carousel responsive" style = "height:100%;width:100%;">
+      <ul id="header_album">
+       <img src="/static/photo_01.png"  />
+       <img src="/static/photo_02.png"  />
+       <img src="/static/photo_03.png"  />
+       <img src="/static/photo_04.png"  />
+      </ul>
+    </div>
+            <a  title='{{site.title}}' class="logo" href="{{site.index}}"></a>
+        </div>  
+
+        <nav class="navbar navbar-dark"> 
+          <ul id ="nav_tab" class="nav nav-pills nav-header">
+            <li role="presentation" class="li6" ><a class="navlia" href="album/index">Home<br/>首页</a></li>
+            <li role="presentation" class="li6" ><a class="navlia" href="/introduction">About US<br/>关于我们</a></li>
+            <li role="presentation" class="li6" ><a class="navlia" href="/activities">Event<br/>行事</a></li>
+            <li role="presentation" class="li6" ><a class="navlia" href="/members">Admission<br/>入会案内</a></li>
+            <li role="presentation" class="li6" class="dropdown">
+              <a class="navlia" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                Share<br/>分享
+              </a>
+              <ul class="dropdown-menu nav-header">
+                <li role="presentation" ><a class="navlia" href="/album_list">album<br/>相册集</a></li>
+                <li role="presentation" ><a class="navlia" href="/video_list">video<br/>视频集</a></li>
+                <li role="presentation" ><a class="navlia" href="/map">Shop</br/>弓具店</a></li>
+              </ul>
+            </li>
+            <li role="presentation" class="li6"><a class="navlia" href="/link">Link<br/>友情链接</a></li>
+            {% if not session.id %}
+            <li role="presentation" class="li12" ><a class="navlia" href="/authority/login">Login<br/>登录</a></li>
+            <li role="presentation" class="li12" ><a class="navlia" href="/authority/register">Register<br/>注册</a></li>
+            {% else %}
+            <li role="presentation" class="li6" ><a class="navlia" href="/authority/logout">Logout<br/>注销({{ session.name }})</a></li>
+            {% endif %}
+          </ul> 
+        </nav>
+      </header>
+      
+        {% block album %}
+        {% endblock %}
+      <div class="blog">
+        {% block content %}
+        {% endblock %}
+      </div>
+      <footer>
+          <div> 
+            <nav class="navbar navbar-dark"> 
+          <ul id ="nav_tab2" class="nav nav-pills">
+            <li role="presentation"  ><a href="album/index">Home<br/>首页</a></li>
+            <li role="presentation"  ><a href="/introduction">About US<br/>关于我们</a></li>
+            <li role="presentation"  ><a href="/activities">Event<br/>行事</a></li>
+            <li role="presentation"  ><a href="/members">Admission<br/>入会案内</a></li>
+            <li role="presentation"  class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                Share<br/>分享
+              </a>
+              <ul class="dropdown-menu">
+                <li role="presentation" ><a href="/album_list">album<br/>相册集</a></li>
+                <li role="presentation" ><a href="/video_list">video<br/>视频集</a></li>
+                <li role="presentation" ><a href="/map">Shop</br/>弓具店</a></li>
+              </ul>
+            </li>
+            <li role="presentation" ><a href="/link">Link<br/>友情链接</a></li>
+          </ul> 
+        </nav>
+            © 2015 ~ 2020 {{site.title}} | 版权所有 DESIGNED BY  <a href="mailto:{{site.email}}" title="{{site.owner}}">{{site.owner}}</a> 
+          </div>
+
+
+      </footer>
+      </div> <!-- main -->
+    </body>
+  </html>

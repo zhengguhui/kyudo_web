@@ -1,0 +1,24 @@
+{% extends "mysite/base.html" %}
+{% block content %}
+  <article>
+    <section class="title">
+      <h2>相册集</h2>
+    </section>
+    
+    <section class="post">
+      <ul class="listing">
+        
+        {% for album in albums %}
+          {% ifchanged album.date.year %}
+            <li class="listing-seperator">{{album.date.year}}</li>
+          {% endifchanged %}
+          <li class="listing-item">
+            <time datetime='{{ album.date|date:"c" }}'>{{ album.date|date:"c" }}</time>
+            <a href="/album/{{album.path}}" title="{{album.title}}">{{album.title}}</a>
+          </li>
+        {% endfor %}
+        
+      </ul>
+    </section>
+  </article>
+{% endblock %}

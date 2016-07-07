@@ -1,0 +1,23 @@
+{% extends "mysite/base.html" %}
+{% block content %}
+  <article>
+    <section class="title">
+      <h2>文件集</h2>
+    </section>
+    
+    <section class="post">
+      <ul class="listing">
+        {% for file in files %}
+          {% ifchanged file.date.year %}
+            <li class="listing-seperator">{{file.date.year}}</li>
+          {% endifchanged %}
+          <li class="listing-item">
+            <time datetime='{{ file.date|date:"Y-m-d D H:i:s" }}'>{{ file.date|date:"Y-m-d D H:i:s" }}</time>
+            <a href="{{file.src}}" title="{{file.title}}">{{file.title}}</a>
+          </li>
+        {% endfor %}
+        
+      </ul>
+    </section>
+  </article>
+{% endblock %}

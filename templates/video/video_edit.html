@@ -1,0 +1,60 @@
+{% extends "mysite/base.html" %}
+{% load staticfiles %}
+{% block head %}
+  <script src="{% static 'video/js/video_edit.js' %}"></script>
+{% endblock %}
+{% block content %}
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="video_title">标题:</label>
+    <input id="video_title" name="title" type="text" class="form-control" placeholder="title" aria-describedby="basic-addon1" value="{{video.title}}"/>
+  </div>
+  <div class="form-group">
+    <label for="video_date">时间:</label>
+    <input type="date" id="video_date"  value='{{ video.date|date:"c" }}'></input>
+  </div>
+  <div class="form-group">
+    <label for="level">阅读权限:</label>
+    <select id="video_level" name="level"  class="form-control"> 
+      {% for level in site.levels %}
+      <option value={{level.level}} 
+        {% if level.level == video.view_level %}
+        selected="selected" 
+        {% endif %}
+      >{{level.name}}</option> 
+      {% endfor %}
+      </select>
+  </div>
+  <div class="form-group">
+    <label for="file_path" >视频地址:</label>
+    <input id="file_path" type="text" class="form-control" placeholder="视频地址" aria-describedby="basic-addon1"/>
+    <button type="button" onclick="addFile()" >
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </button>
+    <div id="selectedFile">
+      {% for file in video.files.all %}
+        <input type="button" class="file btn btn-default" onclick="deleteThis(this)" value="{{file.src}}"/>
+      {% endfor %}
+    </div>
+  </div>
+    <div class="form-group">
+      <label for="video_content">内容:</label>
+      <textarea id="video_content" name="content" class="form-control" rows="15" >{{video.content}}</textarea>
+    </div>
+    <button onclick="submit()" class="btn btn-default">提交</button>
+    <button id="previewDialogTrigger" type="button" data-toggle="modal" class="hidden btn btn-link" data-target="#previewDialog"/>
+    <button onclick="preview()" class="btn btn-default">预览</button>
+    <div class="modal fade" id="previewDialog" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="blog modal-dialog">
+          <div class="blog modal-content">
+            <div class="modal-header">
+              <button id="tagDialogClose" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" >预览:</h4>
+            </div>
+            <div class="blog">
+            <section id="preview_div" class="post"/>
+            </div>
+          </div>
+      </div> 
+    </div>
+  {% endblock %}
