@@ -1,0 +1,1 @@
+uwsgi -x djangochina_socket.xml 
