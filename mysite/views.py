@@ -9,3 +9,7 @@ import re
 def map(request):
 	context = {'site': settings.SITE, 'session': request.session}
 	return render(request, 'mysite/map.html', context)
+
+def map_gen(request):
+	context = {'site': settings.SITE, 'session': request.session}
+	return render(request, 'mysite/map_gen.html', context)

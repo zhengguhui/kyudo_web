@@ -12,5 +12,6 @@ urlpatterns = patterns('',
     url(r'^video/', include('qvideo.urls')),
     url(r'^album/', include('qalbum.urls')),
     url(r'^map$', views.map, name='index'),
+    url(r'^map_gen$', views.map_gen, name='index'),
     url(r'^', include('qblog.urls')),
 )
