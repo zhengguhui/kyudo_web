@@ -8,10 +8,6 @@ import re
 # Create your views here.
 
 
-def archive(request):
-	blogs = Blog.get_all(request.session)
-	context = {'site': settings.SITE, 'session': request.session, 'blogs' : blogs}
-	return render(request, 'blog/archive.html', context)
 
 
 def index(request):

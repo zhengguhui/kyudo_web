@@ -12,8 +12,6 @@ $(document).ready(function(){
 			items: 1,
 			duration: 1400,
 			pauseDuration: 3000
-		},
-		prev: '#prev',
-		next: '#next'
+		}
 	});
 });

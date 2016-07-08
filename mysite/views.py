@@ -13,3 +13,8 @@ def map(request):
 def map_gen(request):
 	context = {'site': settings.SITE, 'session': request.session}
 	return render(request, 'mysite/map_gen.html', context)
+
+def index(request):
+	blogs = Blog.get_all(request.session)
+	context = {'site': settings.SITE, 'session': request.session, 'blogs' : blogs}
+	return render(request, 'blog/archive.html', context)

@@ -6,6 +6,5 @@ from mysite import ajax
 urlpatterns = patterns('',
     url(r'^ajax/loadTags', ajax.loadTags, name='index'),
     url(r'^ajax/markdown', ajax.markdown, name='index'),
-    url(r'^$', views.archive, name='index'),
     url(r'^', views.blog, name='index'),
 )

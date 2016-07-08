@@ -5,6 +5,6 @@ $(document).ready(function(){
   height: "auto",
   responsive: true,
   items:1,
-  scroll:2000
+  scroll:1000
 				});
 });
