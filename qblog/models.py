@@ -29,6 +29,7 @@ class Blog(models.Model):
 	def get_all(session):
 		user_level = User.get_level_session(session)
 		blogs = Blog.objects.filter(view_level__gte = user_level, state = BLOG_STATE_VALID).order_by('-date')
+		return blogs
 
 	@staticmethod
 	def get_blog_path(path):

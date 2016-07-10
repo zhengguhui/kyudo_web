@@ -10,10 +10,10 @@ import re
 
 
 
-def index(request):
-	context = {'site': settings.SITE, 'session': request.session}
-	return render(request, 'mysite/base.html', context)
-
+def list(request):
+	blogs = Blog.get_all(request.session)
+	context = {'file_dir':settings.FILE_DIR, 'site': settings.SITE, 'session': request.session, 'blogs': blogs}
+	return render(request, 'blog/list.html', context)
 
 def blog(request):
 	path = re.match('.*/([^/]*)$', request.path).group(1)
