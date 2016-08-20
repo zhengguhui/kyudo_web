@@ -36,7 +36,7 @@ function submit() {
 			title: $('#blog_title').val(),
 			content: $('#blog_content').val(),
 			level: $('#blog_level').val(),
-			tags: JSON.stringify(TagManager.readTags('#selectedTag .tag')),
+			tags: JSON.stringify(TagManager.readTags('#selectedTag .tag'))
 		}
 	}).done(function(data) {
 		alert(data);

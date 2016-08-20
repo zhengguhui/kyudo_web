@@ -32,7 +32,7 @@ function submit() {
 			title: $('#album_title').val(),
 			content: $('#album_content').val(),
 			level: $('#album_level').val(),
-			files: JSON.stringify(readFiles('#selectedFile .file')),
+			files: JSON.stringify(readFiles('#selectedFile .file'))
 		}
 	}).done(function(data) {
 		alert(data);

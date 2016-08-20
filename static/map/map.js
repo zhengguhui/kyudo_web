@@ -632,6 +632,8 @@ var shop = [
     "opentime": "営業時間：10：00～19：00",
     "tel": "TEL：052-241-3973",
     "zipcode": "〒 460-0008",
+    "visit": "/blog/gjdtfcsgjd",
+    "title": "弓具店探访——翠山弓具店",
     "location": {
       "lat": 35.1636935,
       "lng": 136.91375600000003
@@ -1113,16 +1115,21 @@ function initMap() {
 
 function initOneMark(geocoder, shop){
     if (shop.location == undefined) return ;
+    content = '<div>'+
+                '<div>'+
+                '</div>'+
+                '<h1  class="firstHeading">' + shop.name + '</h1>';
+    if (shop.address != undefined) content += '<div>' + shop.address + '</div>';
+    if (shop.fax != undefined) content += '<div>' + shop.fax + '</div>';
+    if (shop.holiday != undefined) content += '<div>' + shop.holiday + '</div>';
+    if (shop.hp != undefined) content += '<div>' + shop.hp + '</div>';
+    if (shop.opentime != undefined) content += '<div>' + shop.opentime + '</div>';
+    if (shop.tel != undefined) content += '<div>' + shop.tel + '</div>';
+    if (shop.zipcode != undefined) content += '<div>' + shop.zipcode + '</div>';
+    if (shop.visit != undefined) content += '<div><a href="' + shop.visit + '">' + shop.title +  '</a></div>';
+    content += '</div>';
     var infowindow = new google.maps.InfoWindow({
-        content: 
- 	'<div>'+
- 		'<div>'+
- 		'</div>'+
- 		'<h1  class="firstHeading">' + shop.name + '</h1>'+
- 		'<div>'+
- 			shop.address + 
- 		'</div>'+
- 	'</div>'
+        content: content
     }); 
     var marker = new google.maps.Marker({
         position: shop.location,

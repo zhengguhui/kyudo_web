@@ -32,7 +32,7 @@ function submit() {
 			title: $('#video_title').val(),
 			content: $('#video_content').val(),
 			level: $('#video_level').val(),
-			files: JSON.stringify(readFiles('#selectedFile .file')),
+			files: JSON.stringify(readFiles('#selectedFile .file'))
 		}
 	}).done(function(data) {
 		alert(data);

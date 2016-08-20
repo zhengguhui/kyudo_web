@@ -12,7 +12,7 @@ TagManager.loadTags = function(tags, func) {
 		url: "../ajax/loadTags",
 		data: {
 			tags: JSON.stringify(tags)
-		},
+		}
 	}).done(function(data) {
 		func(data);
 	});
@@ -24,7 +24,7 @@ TagManager.markdown = function(content, func) {
 		data: {
 			csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
 			content: content
-		},
+		}
 	}).done(function(data) {
 		func(data);
 	});

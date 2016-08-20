@@ -6,4 +6,4 @@ register = template.Library()
 
 @register.filter(name='markdown')
 def mark_down(value):
-	return markdown.markdown(value, extensions=['markdown.extensions.tables'])
+	return markdown.markdown(value, extensions=['markdown.extensions.tables', 'markdown.extensions.extra'])
