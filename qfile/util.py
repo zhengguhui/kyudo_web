@@ -15,13 +15,25 @@ def reduce_opacity(im, opacity):
     im.putalpha(alpha)
     return im
 
+def resize(im, maxx, maxy):
+    x = im.size[0]
+    y = im.size[1]
+    if (x > maxx):
+        y = y * maxx / x
+        x = maxx
+    if (y > maxy):
+        x = x * maxy / y
+        y = maxy
+    print str(x) + " " + str(y)
+    return im.resize((x, y))
+
 def waterMark(dir, settings):
-    print dir
-    print re.search(r'(\.[^.]+)$', dir).group(1)
     if (re.search(r'(\.[^.]+)$', dir).group(1) not in settings.WATER_TYPE):
-    	print "type wrong"
     	return
     im = Image.open(dir)
+    im = resize(im, settings.IMG_MAXX, settings.IMG_MAXY)
+    print "hehehahi"
+    print im.size
     mark = reduce_opacity(Image.open(settings.WATER_DIR), settings.WATER_OPACITY)
     if im.mode != 'RGBA':
         im = im.convert('RGBA')

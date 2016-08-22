@@ -14,24 +14,23 @@ from qfile.models import File
 
 def upload(request):
     if request.method == 'POST':
-        dir = File.try_save(request.POST, request.FILES['file'], request.session)
-        return HttpResponse('Your file path is<br><a href="%s">%s</a><br>It can be directly pasted in a wiki link.' % (dir, dir) )
+        rsp = 'Your file path is'
+        for afile in request.FILES.getlist('files'):
+            fil = File.try_save(request.POST, afile, request.session)
+            rsp += '<br><a href="%s">![%s](%s)</a>' % (fil.src, fil.title, fil.src)
+        rsp += '<br>It can be directly pasted in a wiki link.';
+        return HttpResponse(rsp)
     context = {'site': settings.SITE, 'session': request.session}
     return render(request, 'file/upload.html', context)
 
 def download(request):
     path = "%s%s" % (settings.FILE_DIR, re.match('.*/([^/]*)$', request.path).group(1))
-    
-
-    print path
     fil = File.show_file_path(path, request.session)
-
     if (fil is None) :
         return HttpResponse('file not exist')
     response = HttpResponse()
     response['Content-Length'] = os.path.getsize('./' + path)
     response['X-Accel-Redirect'] = path
-    print response['X-Accel-Redirect']
     return response
 
 

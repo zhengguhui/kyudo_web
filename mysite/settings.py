@@ -112,4 +112,6 @@ WATER_POS_0 = -50
 WATER_POS_1 = -50
 WATER_SCALE = 0.2
 WATER_OPACITY = 0.5
-WATER_TYPE = ('.png', '.jpg')
+WATER_TYPE = ('.png', '.jpg', 'jpeg', '.PNG', '.JPG', 'JPEG')
+IMG_MAXX = 800
+IMG_MAXY = 600

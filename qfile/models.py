@@ -80,7 +80,7 @@ class File(models.Model):
 		for chunk in fil.chunks():
 			dest.write(chunk)
 		dest.close()
-		fil = File(title = data['title'],
+		fil = File(title = "%s_%s" % (data['title'], re.search(r'^([^.]+)', fil.name).group(0)) ,
 			path = path,
 			src = src,
 			typ = data['type'],
@@ -91,9 +91,6 @@ class File(models.Model):
 			date = datetime.datetime.now(),
 			content = data['content'])
 		fil.save() 
-		print 'yyyyyyyyyyyyyyyyyyyyyyyyyyy'
-		print data['type'], FILE_TYPE_PICTURE_MARK
 		if (data['type'] == ("%d" % FILE_TYPE_PICTURE_MARK)):
-			print data['type'], FILE_TYPE_PICTURE_MARK
 			waterMark('./' + path, settings)
-		return src
+		return fil
