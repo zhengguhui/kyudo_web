@@ -1,5 +1,8 @@
 var map;
+var image = "/static/icon.png";
 var geocoder;
+var allowedBounds;  // assign something here
+var lastValidCenter;  // initialize this using map.getCenter()   
 
 var shop = [
   {
@@ -632,8 +635,13 @@ var shop = [
     "opentime": "営業時間：10：00～19：00",
     "tel": "TEL：052-241-3973",
     "zipcode": "〒 460-0008",
-    "visit": "/blog/gjdtfcsgjd",
-    "title": "弓具店探访——翠山弓具店",
+    "visit": [
+	{
+            "url": "/blog/gjdtfcsgjd",
+            "title": "弓具店探访——翠山弓具店"
+	}
+    ]
+    ,
     "location": {
       "lat": 35.1636935,
       "lng": 136.91375600000003
@@ -1103,6 +1111,7 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 38.057549, lng: 137.496112},
         zoom: 6,
+minZoom:6,
         zoomControl: false,
         mapTypeControl: false,
         scaleControl: false,
@@ -1110,11 +1119,23 @@ function initMap() {
         rotateControl: false
     });
     geocoder = new google.maps.Geocoder();
+google.maps.event.addListenerOnce(map, 'idle', function(){
+    allowedBounds = this.getBounds();
+lastValidCenter=this.getCenter();
+	//console.log(map);
+    //console.log(allowedBounds);
+   //console.log(this.getBounds());
+    });
 }
 
 
 function initOneMark(geocoder, shop){
     if (shop.location == undefined) return ;
+    data = {
+        position: shop.location,
+        map: map,
+        title: shop.title
+    }
     content = '<div>'+
                 '<div>'+
                 '</div>'+
@@ -1126,16 +1147,17 @@ function initOneMark(geocoder, shop){
     if (shop.opentime != undefined) content += '<div>' + shop.opentime + '</div>';
     if (shop.tel != undefined) content += '<div>' + shop.tel + '</div>';
     if (shop.zipcode != undefined) content += '<div>' + shop.zipcode + '</div>';
-    if (shop.visit != undefined) content += '<div><a href="' + shop.visit + '">' + shop.title +  '</a></div>';
+    if (shop.visit != undefined){
+	for (var x in shop.visit){
+		content += '<div><a href="' + shop.visit[x].url + '">' + shop.visit[x].title +  '</a></div>';
+	}
+	data.icon = image;
+    }
     content += '</div>';
     var infowindow = new google.maps.InfoWindow({
         content: content
     }); 
-    var marker = new google.maps.Marker({
-        position: shop.location,
-        map: map,
-        title: shop.title
-    });
+    var marker = new google.maps.Marker(data);
     marker.addListener('click', function() {
         infowindow.open(map, marker);
     });
@@ -1145,8 +1167,115 @@ function initMark(){
 	for (var i = 0; i < shop.length; ++i)
 		initOneMark(geocoder, shop[i]);
 }
+function checkBounds() {  // when bounds changes due to resizing or zooming in/out
 
+    var currentBounds = map.getBounds();
+    if (currentBounds == null) return;
+    if (allowedBounds == null) return;
+      var allowed_ne_lng = allowedBounds.getNorthEast().lng();
+      var allowed_ne_lat = allowedBounds.getNorthEast().lat();
+      var allowed_sw_lng = allowedBounds.getSouthWest().lng();
+      var allowed_sw_lat = allowedBounds.getSouthWest().lat();
+	//console.log("hehe");
+    var wrap;
+    var cc = map.getCenter();
+    var centerH = false;
+    var centerV = false;
+
+    // Check horizontal wraps and offsets
+    if ( currentBounds.toSpan().lng() > allowedBounds.toSpan().lng() ) {
+        centerH = true;
+    }
+    else {  // test positive and negative wrap respectively
+        wrap = currentBounds.getNorthEast().lng() < cc.lng();
+        var current_ne_lng = !wrap ?   currentBounds.getNorthEast().lng()  : allowed_ne_lng +(currentBounds.getNorthEast().lng() + 180 )  + (180 - allowed_ne_lng);
+        wrap = currentBounds.getSouthWest().lng() > cc.lng();
+        var current_sw_lng = !wrap ?  currentBounds.getSouthWest().lng() : allowed_sw_lng - (180-currentBounds.getSouthWest().lng()) - (allowed_sw_lng+180);
+    }
+
+
+    // Check vertical wraps and offsets
+    if ( currentBounds.toSpan().lat() > allowedBounds.toSpan().lat() ) {
+        centerV = true;
+    }
+    else { // test positive and negative wrap respectively
+    wrap = currentBounds.getNorthEast().lat()   < cc.lat();    if (wrap) { alert("WRAp detected top") } // else alert("no wrap:"+currentBounds); wrap = false;
+      var current_ne_lat =  !wrap ? currentBounds.getNorthEast().lat()  : allowed_ne_lat + (currentBounds.getNorthEast().lat() +90) + (90 - allowed_ne_lat);
+      wrap = currentBounds.getSouthWest().lat() > cc.lat();  if (wrap) { alert("WRAp detected btm") } //alert("no wrap:"+currentBounds);
+      var current_sw_lat = !wrap ?  currentBounds.getSouthWest().lat() : allowed_sw_lat - (90-currentBounds.getSouthWest().lat()) - (allowed_sw_lat+90);
+    }
+
+
+      // Finalise positions
+      var centerX = cc.lng();
+      var centerY = cc.lat();
+     if (!centerH) {
+        if (current_ne_lng > allowed_ne_lng) centerX -= current_ne_lng-allowed_ne_lng;
+        if (current_sw_lng < allowed_sw_lng) centerX += allowed_sw_lng-current_sw_lng;
+     }
+     else {
+         centerX = allowedBounds.getCenter().lng();
+     }
+
+     if (!centerV) {
+       if (current_ne_lat > allowed_ne_lat) {
+           centerY -= (current_ne_lat-allowed_ne_lat) * 3;  // approximation magic numbeer. Adjust as u see fit, or use a more accruate pixel measurement.
+       }
+       if (current_sw_lat < allowed_sw_lat) {
+           centerY += (allowed_sw_lat-current_sw_lat)*2.8;  // approximation magic number
+       }
+     }
+     else {
+        centerY = allowedBounds.getCenter().lat();
+     }
+     //console.log(centerX);
+	//console.log(centerY);
+//console.log(new google.maps.LatLng(centerY,centerX));
+	lastValidCenter = new google.maps.LatLng(centerY,centerX);
+//console.log(lastValidCenter);
+     map.setCenter(lastValidCenter);
+}
+
+
+
+function limitBound(bound) // Occurs during dragging, pass allowedBounds to this function in most cases. Requires persistant 'lastValidCenter=map.getCenter()' var reference.
+{
+     
+	
+        var mapBounds = map.getBounds();
+
+         if (   mapBounds.getNorthEast().lng() >=  mapBounds.getSouthWest().lng() && mapBounds.getNorthEast().lat()  >= mapBounds.getSouthWest().lat()  // ensure no left/right, top/bottom wrapping
+            && bound.getNorthEast().lat() > mapBounds.getNorthEast().lat()  // top
+            && bound.getNorthEast().lng() > mapBounds.getNorthEast().lng() // right
+            && bound.getSouthWest().lat() < mapBounds.getSouthWest().lat() // bottom
+            && bound.getSouthWest().lng() < mapBounds.getSouthWest().lng()) // left
+            {
+                lastValidCenter=map.getCenter();  // valid case, set up new valid center location
+            }
+
+        //   if (bound.contains(map.getCenter()))
+        // {
+	console.log("x");
+	console.log(lastValidCenter);
+                map.panTo(lastValidCenter);console.log("y");
+             //  }
+
+}
 $(document).ready(function(){
     initMap();
     initMark();
+    
+    google.maps.event.addListener(map, 'zoom_changed', function() {
+        //var zoom = map.getZoom();
+        checkBounds();
+    });
+
+    google.maps.event.addListener(map, "bounds_changed", function() {
+
+        checkBounds();
+    });
+
+    google.maps.event.addListener(map, 'center_changed', function() {
+          limitBound(allowedBounds);
+    }); 
 });
