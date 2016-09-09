@@ -1,7 +1,11 @@
 
 function addFile(){
 	console.log($("#file_path").val());
-	$('#selectedFile').append('<input type="button" class="file btn btn-default" onclick="deleteThis(this)" value="' + $("#file_path").val() + '"/>');
+	files = $("#file_path").val().split('|')
+	for(var i=0;i<files.length;i++){
+		f = files[i];
+		$('#selectedFile').append('<input type="button" class="file btn btn-default" onclick="deleteThis(this)" value="' + f + '"/>');
+	}
 	$("#file_path").val("");
 }
 
