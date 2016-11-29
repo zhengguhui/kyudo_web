@@ -16,7 +16,7 @@ def list(request):
 	return render(request, 'blog/list.html', context)
 
 def blog(request):
-	path = re.match('.*/([^/]*)$', request.path).group(1)
+	path = request.path#re.match('.*/([^/]*)$', request.path).group(1)
 	if path == '':
 		return HttpResponseRedirect('/')
 	blog = Blog.get_blog_path(path)

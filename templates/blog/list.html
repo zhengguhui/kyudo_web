@@ -14,7 +14,7 @@
           {% endifchanged %}
           <li class="listing-item">
             <time datetime='{{ blog.date|date:"c" }}'>{{ blog.date|date:"c" }}</time>
-            <a href="/blog/{{blog.path}}" title="{{blog.title}}">{{blog.title}}</a>
+            <a href="{{blog.path}}" title="{{blog.title}}">{{blog.title}}</a>
           </li>
         {% endfor %}
         

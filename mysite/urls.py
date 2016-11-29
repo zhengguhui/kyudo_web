@@ -7,6 +7,7 @@ from mysite import views
 import os
 
 urlpatterns = patterns('',
+    url(r'^sitemap.xml', views.sitemap, name='index'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^file/', include('qfile.urls')),
     url(r'^authority/', include('qauthority.urls')),

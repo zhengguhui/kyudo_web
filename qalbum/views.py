@@ -15,7 +15,7 @@ def list(request):
 	return render(request, 'album/list.html', context)
 
 def album(request):
-	path = re.match('.*/([^/]*)$', request.path).group(1)
+	path = request.path#.match('.*/([^/]*)$', request.path).group(1)
 	if path == '':
 		return HttpResponseRedirect('/')
 	album = Album.get_album_path(path)

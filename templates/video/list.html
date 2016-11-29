@@ -14,7 +14,7 @@
           {% endifchanged %}
           <li class="listing-item">
             <time datetime='{{ video.date|date:"c" }}'>{{ video.date|date:"c" }}</time>
-            <a href="/video/{{video.path}}" title="{{video.title}}">{{video.title}}</a>
+            <a href="{{video.path}}" title="{{video.title}}">{{video.title}}</a>
           </li>
         {% endfor %}
         

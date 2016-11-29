@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset>
+<url>
+	{% for blog in blogs %}
+<loc>http://{{path}}/{{blog.path}}</loc>
+<lastmod>{{ blog.date|date:"c" }}</lastmod>
+<changefreq>monthly</changefreq>
+<priority>1.0</priority>
+	{% endfor %}
+
+
+</url>
+</urlset>

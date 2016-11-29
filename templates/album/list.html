@@ -14,7 +14,7 @@
           {% endifchanged %}
           <li class="listing-item">
             <time datetime='{{ album.date|date:"c" }}'>{{ album.date|date:"c" }}</time>
-            <a href="/album/{{album.path}}" title="{{album.title}}">{{album.title}}</a>
+            <a href="{{album.path}}" title="{{album.title}}">{{album.title}}</a>
           </li>
         {% endfor %}
         

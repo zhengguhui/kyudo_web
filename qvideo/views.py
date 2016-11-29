@@ -15,7 +15,7 @@ def list(request):
 	return render(request, 'video/list.html', context)
 
 def video(request):
-	path = re.match('.*/([^/]*)$', request.path).group(1)
+	path = request.path#.match('.*/([^/]*)$', request.path).group(1)
 	if path == '':
 		return HttpResponseRedirect('/')
 	video = Video.get_video_path(path)
