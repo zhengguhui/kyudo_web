@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset>
-<url>
 	{% for blog in blogs %}
-<loc>http://{{path}}/{{blog.path}}</loc>
-<lastmod>{{ blog.date|date:"c" }}</lastmod>
+<url>
+<loc>http://{{path}}{{blog.path}}</loc>
+<lastmod>{{ blog.modify|date:"c" }}</lastmod>
 <changefreq>monthly</changefreq>
 <priority>1.0</priority>
+</url>
 	{% endfor %}
 
-
+        {% for album in albums %}
+<url>
+<loc>http://{{path}}{{album.path}}</loc>
+<lastmod>{{ album.modify|date:"c" }}</lastmod>
+<changefreq>monthly</changefreq>
+<priority>1.0</priority>
 </url>
+        {% endfor %}
+
+        {% for video in videos %}
+<url>
+<loc>http://{{path}}{{video.path}}</loc>
+<lastmod>{{ video.modify|date:"c" }}</lastmod>
+<changefreq>monthly</changefreq>
+<priority>1.0</priority>
+</url>
+        {% endfor %}
+
+
 </urlset>

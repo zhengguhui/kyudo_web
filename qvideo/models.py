@@ -13,6 +13,7 @@ class Video(models.Model):
 	# for all the documentations!!
 	title = models.CharField(max_length = 20) # article title
 	date = models.DateField()
+	modify = models.DateField()
 	path = models.CharField(max_length = 100) # article path
 	content = models.TextField() # the wiki body
 	edit_level = models.IntegerField() # the level need to edit this page
@@ -61,6 +62,7 @@ class Video(models.Model):
 		new_video = Video(
 			title = data['title'],
 			date = datetime.strptime (data['date'], '%Y-%m-%d'),
+			modify = datetime.now(),
 			path = path,
 			content = data['content'],
 			edit_level = user.access_level,

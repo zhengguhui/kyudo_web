@@ -9,8 +9,10 @@ python manage.py makemigrations qauthority
 python manage.py makemigrations qblog
 python manage.py makemigrations qfile
 python manage.py makemigrations qvideo
+python manage.py makemigrations album
 python manage.py sqlmigrate qauthority 0001
 python manage.py sqlmigrate qblog 0001
 python manage.py sqlmigrate qfile 0001
 python manage.py sqlmigrate qvideo 0001
+python manage.py sqlmigrate album 0001
 python manage.py migrate
