@@ -33,7 +33,7 @@
     <session>
   <section class="post">
     {% autoescape off %}
-    {{video.content | markdown}}
+    {{video.content session| markdown:session}}
   {% endautoescape %}
 </section>
 {% if 'level' in session %}

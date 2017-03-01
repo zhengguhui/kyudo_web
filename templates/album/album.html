@@ -70,7 +70,7 @@
     <session>
   <section class="post">
     {% autoescape off %}
-    {{album.content | markdown}}
+    {{album.content session| markdown}}
   {% endautoescape %}
 </section>
 {% if 'level' in session %}

@@ -1,5 +1,8 @@
 owner: 上海正鹄会
-email: zhenggushanghai@163.com
+email: zhenggushanghai@gmail.com
+email_pwd: wyyxbnygyg
+stmp_add: smtp.gmail.com
+stmp_port: 465
 title: 弓道·上海正鹄会
 index: /index
 login_level: 10

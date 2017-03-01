@@ -23,7 +23,7 @@
     -->
   <section class="post">
     {% autoescape off %}
-    {{blog.content | markdown}}
+    {{blog.content| markdown:session}}
   {% endautoescape %}
 </section>
 {% if 'level' in session %}
