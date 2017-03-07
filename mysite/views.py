@@ -9,6 +9,12 @@ import re
 
 # Create your views here.
 
+
+def mail(request):
+	context = {'site': settings.SITE, 'session': request.session}
+	return render(request, 'mysite/mail.html', context)
+
+
 def map(request):
 	context = {'site': settings.SITE, 'session': request.session}
 	return render(request, 'mysite/map.html', context)

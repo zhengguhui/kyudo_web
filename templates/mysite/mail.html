@@ -1,0 +1,19 @@
+{% extends "mysite/base.html" %}
+{% load staticfiles %}
+{% block head %}
+  <script src="{% static 'mysite/js/mail.js' %}"></script>
+{% endblock %}
+{% block content %}
+  <form action="" method="post">{% csrf_token %}
+      <label for="contact">发送邮件至{{site.email}}:</label>
+    <div class="form-group">
+      <label for="contact">联系方式:</label>
+      <input id="contact" name="contact" type="text" class="form-control"  aria-describedby="basic-addon1"/>
+    </div>
+    <div class="form-group">
+      <label for="content">内容:</label>
+      <textarea id="content" name="content" class="form-control" rows="15" ></textarea>
+    </div>
+    <button onclick="send_mail()" class="btn btn-default">提交</button>
+  </form>
+{% endblock %}

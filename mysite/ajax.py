@@ -1,3 +1,4 @@
+#!-*-coding:utf-8 -*-
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext, loader
 from django.shortcuts import render
@@ -7,8 +8,9 @@ from qblog.templatetags.blog_filter import mark_down
 from qblog.models import User, Blog, Tag
 from mysite import settings
 import smtplib
-from email.mime.text import MIMEText
 from email.utils import formataddr
+import email.mime.text  
+import traceback
 
 from mysite import settings
 
@@ -26,29 +28,33 @@ def markdown(request):
 
 
 
-
 def sendMail(request):
-	my_sender='zhenggushanghai@gmail.com' 
-	my_user='zhenggushanghai@gmail.com' 
-	def mail():
-		ret=True
-		try:
-			msg=MIMEText('test','plain','utf-8')
-			msg['From']=formataddr([settings.SITE['owner'],my_sender])	
-			msg['To']=formataddr(["x",my_user])	
-			msg['Subject']="y" 
-			server=smtplib.SMTP("smtp.gmail.com",465) 
-			server.login(my_sender,"wyyxbnygyg") 
-			server.sendmail(my_sender,[my_user,],msg.as_string())
-			server.quit()
-		except Exception, e:
-			ret=False
-			print e
-		return ret
-	ret=mail()
-	if ret:
+	try:
+		smtp = smtplib.SMTP()  
+		print 'connecting ...'  
+		smtp.set_debuglevel(1)  
+		try:  
+		    print smtp.connect(settings.SITE['stmp_addr'],settings.SITE['stmp_port'])  
+		except:  
+		    print 'CONNECT ERROR ****'  
+		if  settings.SITE['stmp_tls']:
+		    smtp.starttls()  
+		try:  
+		    print 'loginning ...'  
+		    smtp.login(settings.SITE['email_send'],settings.SITE['email_pwd'])  
+		except:  
+		    print 'LOGIN ERROR ****'  
+		msg = email.mime.text.MIMEText(request.POST['content'], _charset='utf-8')
+		msg['From'] = settings.SITE['email_send']  
+		msg['To'] = settings.SITE['email']
+		msg['Subject']=settings.SITE['email_subject']
+		smtp.sendmail(settings.SITE['email_send'],settings.SITE['email'],msg.as_string())  
+		smtp.quit()  
 		return HttpResponse('success')
-	else:
-		HttpResponse("failed") 
+	except Exception, e:
+		exstr = traceback.format_exc()
+		print exstr
+		return HttpResponse("failed")
+
 
 
