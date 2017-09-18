@@ -1,7 +1,7 @@
 owner: 上海正鹄会
 email: zhenggushanghai@gmail.com
-email_send: example@163.com
-email_pwd: examplepwd
+email_send: zhenggushanghai@163.com
+email_pwd: zhengguaut0
 email_subject: '[system]zhenggu website info'
 stmp_tls: false
 stmp_addr: smtp.163.com

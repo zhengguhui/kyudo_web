@@ -16,7 +16,11 @@ def mail(request):
 
 
 def map(request):
-	context = {'site': settings.SITE, 'session': request.session}
+	blog = {'content':"""
+%{blog:shop%}
+> * <a href="%{path%}">%{title%}</a>%{end%}
+"""}
+	context = {'site': settings.SITE, 'session': request.session, 'blog' : blog}
 	return render(request, 'mysite/map.html', context)
 
 def map_gen(request):

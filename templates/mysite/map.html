@@ -1,5 +1,6 @@
 {% extends "mysite/base.html" %}
 {% load staticfiles %}
+{% load blog_filter %}
 {% block head %}
   <script src="{% static 'map/map.js' %}"></script>
   <script src="http://ditu.google.cn/maps/api/js?key=AIzaSyCV2LhPPs_xQ5olb_gmqTq3oYPCXYgTMjQ" type="text/javascript"></script>
@@ -14,5 +15,10 @@
       <div id="map" style="width: 100%;height: 100%;"></div>
     </section>
   </article>
+  <section class="post">
+{% autoescape off %}
+{{blog.content| markdown:session}}
+{% endautoescape %}
+</section>
 {% endblock %}
   
