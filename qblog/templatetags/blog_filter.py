@@ -16,14 +16,14 @@ def mark_down(value, session):
 		blogs = Blog.get_all(session)
 		tag =  m.group(1)
 		inner = m.group(2)
-		print tag, inner
+		#print tag, inner
 		info = []
 		for blog in blogs:
 			#print blog.content
 			if (len(blog.tags.filter(value = m.group(1))) > 0):
 				data = inner
 				file = re.search('!\[(.*?)\]\((.*?)\)', blog.content).group(2)
-				print file
+				#print file
 				data = re.compile('%{path%}').sub(blog.path, data)
 				data = re.compile('%{title%}').sub(blog.title, data)
 				data = re.compile('%{file%}').sub(file, data)

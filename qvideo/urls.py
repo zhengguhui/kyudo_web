@@ -1,8 +1,8 @@
-from django.conf.urls import patterns, url
+from django.urls import re_path
 
 from qvideo import views
 
-urlpatterns = patterns('',
-    url(r'^list/$', views.list, name='index'),
-    url(r'^', views.video, name='index'),
-)
+urlpatterns = [
+    re_path('^list/$', views.list, name='index'),
+    re_path('^', views.video, name='index'),
+]

@@ -8,9 +8,7 @@ import re
 # Create your views here.
 
 def list(request):
-	print "xxxxx"
 	albums = Album.get_all(request.session)
-	print len(albums)
 	context = {'site': settings.SITE, 'session': request.session, 'albums' : albums}
 	return render(request, 'album/list.html', context)
 

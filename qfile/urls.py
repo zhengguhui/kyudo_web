@@ -1,9 +1,9 @@
-from django.conf.urls import patterns, url
+from django.urls import re_path
 
 from qfile import views
 
-urlpatterns = patterns('',
-    url(r'^upload', views.upload, name='index'),
-    url(r'^list', views.list, name='index'),
-    url(r'^', views.download, name='index'),
-)
+urlpatterns = [
+    re_path('^upload', views.upload, name='index'),
+    re_path('^list', views.list, name='index'),
+    re_path('^', views.download, name='index'),
+]

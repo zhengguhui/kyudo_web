@@ -3,7 +3,7 @@
 	{% for blog in blogs %}
 <url>
 <loc>http://{{path}}{{blog.path}}</loc>
-<lastmod>{{ blog.modify|date:"c" }}</lastmod>
+<lastmod>{{ blog.modify }}</lastmod>
 <changefreq>monthly</changefreq>
 <priority>1.0</priority>
 </url>
@@ -12,7 +12,7 @@
         {% for album in albums %}
 <url>
 <loc>http://{{path}}{{album.path}}</loc>
-<lastmod>{{ album.modify|date:"c" }}</lastmod>
+<lastmod>{{ album.modify }}</lastmod>
 <changefreq>monthly</changefreq>
 <priority>1.0</priority>
 </url>
@@ -21,7 +21,7 @@
         {% for video in videos %}
 <url>
 <loc>http://{{path}}{{video.path}}</loc>
-<lastmod>{{ video.modify|date:"c" }}</lastmod>
+<lastmod>{{ video.modify }}</lastmod>
 <changefreq>monthly</changefreq>
 <priority>1.0</priority>
 </url>

@@ -8,9 +8,7 @@ import re
 # Create your views here.
 
 def list(request):
-	print "xxxxx"
 	videos = Video.get_all(request.session)
-	print len(videos)
 	context = {'site': settings.SITE, 'session': request.session, 'videos' : videos}
 	return render(request, 'video/list.html', context)
 

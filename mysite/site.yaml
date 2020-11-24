@@ -1,4 +1,4 @@
-owner: ä¸Šæµ·æ­£é¹„ä¼š
+owner: ÉÏº£ÕığÀ»á
 email: zhenggushanghai@gmail.com
 email_send: zhenggushanghai@163.com
 email_pwd: zhengguaut0
@@ -6,13 +6,13 @@ email_subject: '[system]zhenggu website info'
 stmp_tls: false
 stmp_addr: smtp.163.com
 stmp_port: 25
-title: å¼“é“Â·ä¸Šæµ·æ­£é¹„ä¼š
+title: ¹­µÀ¡¤ÉÏº£ÕığÀ»á
 index: /index
 login_level: 10
 levels : 
     -   level : 1
-        name : ç®¡ç†å‘˜
+        name : ¹ÜÀíÔ±
     -   level : 10
-        name : ä¼šå‘˜
+        name : »áÔ±
     -   level : 1000
-        name : æ¸¸å®¢
+        name : ÓÎ¿Í

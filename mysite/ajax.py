@@ -31,19 +31,15 @@ def markdown(request):
 def sendMail(request):
 	try:
 		smtp = smtplib.SMTP()  
-		print 'connecting ...'  
+		#print 'connecting ...'  
 		smtp.set_debuglevel(1)  
-		try:  
-		    print smtp.connect(settings.SITE['stmp_addr'],settings.SITE['stmp_port'])  
-		except:  
-		    print 'CONNECT ERROR ****'  
 		if  settings.SITE['stmp_tls']:
 		    smtp.starttls()  
 		try:  
-		    print 'loginning ...'  
+		    #print 'loginning ...'  
 		    smtp.login(settings.SITE['email_send'],settings.SITE['email_pwd'])  
 		except:  
-		    print 'LOGIN ERROR ****'  
+		    1#print 'LOGIN ERROR ****'  
 		msg = email.mime.text.MIMEText(request.POST['content'], _charset='utf-8')
 		msg['From'] = settings.SITE['email_send']  
 		msg['To'] = settings.SITE['email']
@@ -51,9 +47,9 @@ def sendMail(request):
 		smtp.sendmail(settings.SITE['email_send'],settings.SITE['email'],msg.as_string())  
 		smtp.quit()  
 		return HttpResponse('success')
-	except Exception, e:
+	except Exception as e:
 		exstr = traceback.format_exc()
-		print exstr
+		#print exstr
 		return HttpResponse("failed")
 
 

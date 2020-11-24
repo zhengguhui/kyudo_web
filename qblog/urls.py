@@ -1,8 +1,8 @@
-from django.conf.urls import patterns, url
+from django.urls import re_path
 
 from qblog import views
 
-urlpatterns = patterns('',
-    url(r'^blog/list/$', views.list, name='index'),
-    url(r'^', views.blog, name='index'),
-)
+urlpatterns =[
+    re_path('^blog/list/$', views.list, name='index'),
+    re_path('^', views.blog, name='index'),
+]

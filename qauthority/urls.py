@@ -1,9 +1,9 @@
-from django.conf.urls import patterns, url
+from django.urls import re_path
 
 from qauthority import views
 
-urlpatterns = patterns('',
-    url(r'^logout', views.logout, name='index'),
-    url(r'^login', views.login, name='index'),
-    url(r'^register', views.register, name='index'),
-)
+urlpatterns = [
+    re_path('^logout', views.logout, name='index'),
+    re_path('^login', views.login, name='index'),
+    re_path('^register', views.register, name='index'),
+]

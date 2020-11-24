@@ -19,7 +19,7 @@ class Blog(models.Model):
 	content = models.TextField() # the wiki body
 	edit_level = models.IntegerField() # the level need to edit this page
 	view_level = models.IntegerField() # the level need to read this page
-	owner = models.ForeignKey(User) # owner id
+	owner = models.ForeignKey(User,on_delete=models.CASCADE,) # owner id
 	state = models.IntegerField()
 	tags = models.ManyToManyField(Tag)
 

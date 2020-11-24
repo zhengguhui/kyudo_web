@@ -34,8 +34,6 @@ def index(request):
 
 def sitemap(request):
 	blogs = Blog.get_all(request.session)
-	for blog in blogs:
-		print blog.content
 	videos = Video.get_all(request.session)
 	albums = Album.get_all(request.session)
 	context = {'file_dir':settings.FILE_DIR, 'site': settings.SITE, 'session': request.session, 'blogs': blogs, 'path':request.get_host(),

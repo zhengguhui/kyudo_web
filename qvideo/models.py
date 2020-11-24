@@ -18,7 +18,7 @@ class Video(models.Model):
 	content = models.TextField() # the wiki body
 	edit_level = models.IntegerField() # the level need to edit this page
 	view_level = models.IntegerField() # the level need to read this page
-	owner = models.ForeignKey(User) # owner id
+	owner = models.ForeignKey(User,on_delete=models.CASCADE,) # owner id
 	state = models.IntegerField()
 	files = models.ManyToManyField(File)
 
@@ -72,16 +72,16 @@ class Video(models.Model):
 			)
 		file_list = []
 		for file_src in json.loads(data['files']):
-			print file_src
+			#print file_src
 			files = File.objects.filter(src = file_src)
 			if len(files) != 0:
 				file_list.append(files[0])
-				print "add"
+				#print "add"
 		new_video.save()
 		for fil in file_list:
-			print fil.path
+			#print fil.path
 			new_video.files.add(fil)
-		print len(video.files.all())
+		#print len(video.files.all())
 		if video is not None:
 			video.state = VIDEO_STATE_INVALID
 			video.save()

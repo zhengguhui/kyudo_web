@@ -19,7 +19,7 @@ class File(models.Model):
 	view_level = models.IntegerField()
 	typ = models.IntegerField()
 	state = models.IntegerField()
-	owner = models.ForeignKey(User) 
+	owner = models.ForeignKey(User,on_delete=models.CASCADE,) 
 	date = models.DateTimeField()
 	content = models.TextField()
 
